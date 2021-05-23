@@ -1,0 +1,36 @@
+{
+  "name": "spicy-poudrin",
+  "version": "1.0.0",
+  "description": "This app will help in managing finances of muggles",
+  "main": "head.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon head/head.js",
+    "head": "nodemon head/head.js",
+    "tail": "npm start --prefix tail",
+    "dev": "concurrently \"npm run head\" \"npm run tail\"",
+    "pretty": "prettier --write \"./**/*.{js,jsx,json}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Souvik141/spicy-poudrin.git"
+  },
+  "author": "Sav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Souvik141/spicy-poudrin/issues"
+  },
+  "homepage": "https://github.com/Souvik141/spicy-poudrin#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^6.1.0",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.10",
+    "nodemailer": "^6.6.0",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.3.0"
+  }
+}
