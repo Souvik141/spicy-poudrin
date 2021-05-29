@@ -1,0 +1,56 @@
+.txns {
+    position: relative;
+    height: 80vh;
+    margin: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+.txn-header {
+    height: 50px;
+    border-radius: 5px 5px 0px 0px;
+    background-color: #dee1e6;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.txns .record-table th {
+    border: none;
+    background-color: #eee;
+    border-top: 1px solid #ccc;
+}
+.action-case {
+    display: flex;
+    justify-content: space-evenly;
+    width: 136px;
+}
+.add-txn-button, .import-txn-button {
+    width: 58px;
+    height: 36px;
+    border-width: 1px;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #262624;
+}
+.add-txn-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.record-data-form {
+    
+}
+.x-button {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: #262624;
+    background-color: red;
+}

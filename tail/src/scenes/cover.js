@@ -1,32 +1,22 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import Txn from '../elements/txn.js'
-import {listTxns} from '../actions/txnActions.js'
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getFigure } from "../callouts/entityCallouts.js";
 
-const Cover = ({ history, match }) => {
-    const dispatch = useDispatch()
-    const txnState = useSelector((state) => state.txnState)
-    const { txnList } = txnState
-    useEffect(() => {
-        if (!txnList) {
-          dispatch(listTxns())
-          dispatch({ type: 'TXN_LIST_RESET' })
-        }
-    }, [dispatch])
-    const refList = txnList ? txnList : [];
-    return (
-        <div className='cover'>
-            <ul>
-                {refList.map(function(each) {
-                    return (
-                        <li key={each._id}>
-                            <Txn txn={each}/>
-                        </li>
-                    )
-                })}
-            </ul>
-        </div>
-    )
-}
+const Cover = ({ history }) => {
+  console.log("Cover");
+  const dispatch = useDispatch();
+  const entityState = useSelector((state) => state.entityState);
+  const { userInfo } = entityState;
+  const entityFigure = useSelector((state) => state.entityFigure);
+  const { user } = entityFigure;
+  useEffect(() => {
+    if (!userInfo) {
+      history.push("/auth/signin");
+    } else if (!user || !user.email) {
+      dispatch(getFigure());
+    }
+  }, [dispatch, history, userInfo, user]);
+  return <div className="cover"></div>;
+};
 
 export default Cover;

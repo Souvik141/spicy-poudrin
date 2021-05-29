@@ -1,175 +1,129 @@
-import asyncHandler from 'express-async-handler'
-import {generateToken} from '../utils.js'
-import Entity from '../models/entity_m.js'
+/**
+ * @description     : model action module with user authentication actions
+ * @author          : Sav
+ * @group           : model actions
+ * @lastModifiedOn  : 13-05-2021
+ * @lastModifiedBy  : Sav
+ * @ModificationLog :
+ * @Ver @Date       @Author     @Modification
+ * 1.0  13-05-2021  Sav         model action module with default user authentication actions { authenticateEntity, registerEntity, getFigure, updateFigure }
+ */
+import asyncHandler from "express-async-handler";
+import { generateToken, verifyToken } from "../utils.js";
+import Entity from "../models/entity_m.js";
 
-const authUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body
+/**
+ * @DESC    Authenticate user
+ * @ROUTE   POST /api/entity/login
+ * @ACCESS  Public
+ */
+const authenticateEntity = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
 
-  const user = await Entity.findOne({ email })
-
-  if (user && (await user.matchPassword(password))) {
+  const entity = await Entity.findOne({ email });
+  if (entity && (await entity.matchPassword(password))) {
     res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-      token: generateToken(user._id),
-    })
+      _id: entity._id,
+      firstname: entity.firstname,
+      lastname: entity.lastname,
+      email: entity.email,
+      tabs: entity.tabs,
+      token: generateToken(entity._id),
+    });
   } else {
-    res.status(401)
-    throw new Error('Invalid email or password')
+    res.status(401);
+    throw new Error("Invalid email or password");
   }
-})
+});
 
-const registerUser = asyncHandler(async (req, res) => {
-  const {
-    firstname,
-    lastname,
-    email,
-    password
-  } = req.body
+/**
+ * @DESC    Register user
+ * @ROUTE   POST /api/entity/register
+ * @ACCESS  Public
+ */
+const registerEntity = asyncHandler(async (req, res) => {
+  const { firstname, lastname, email, password } = req.body;
 
-  const entityAlreadyExists = await Entity.findOne({ email })
+  const entityAlreadyExists = await Entity.findOne({ email });
 
   if (entityAlreadyExists) {
-    res.status(400)
-    throw new Error('Entity already exists')
+    res.status(400);
+    throw new Error("Entity already exists");
   }
 
   const entity = await Entity.create({
     firstname,
     lastname,
     email,
-    password
-  })
+    password,
+  });
 
   if (entity) {
     res.status(200).json({
-      firstname: user.firstname,
-      lastname: user.lastname,
-      email: user.email,
-      token: generateToken(user._id)
-    })
+      _id: entity._id,
+      firstname: entity.firstname,
+      lastname: entity.lastname,
+      email: entity.email,
+      token: generateToken(entity._id),
+    });
   } else {
-    res.status(400)
-    throw new Error('Invalid user data')
+    res.status(400);
+    throw new Error("Invalid entity data");
   }
-})
+});
 
+/**
+ * @DESC    Fetch user profile
+ * @ROUTE   GET /api/entity/figure
+ * @ACCESS  Private
+ */
 const getFigure = asyncHandler(async (req, res) => {
-  const token = req.headers["access-token"]
-  const entity = await Entity.findById(req.user._id)
-
-  if (user) {
+  const token = req.headers.authorization.split(" ")[1];
+  const entity = await Entity.findById(verifyToken(token));
+  if (entity) {
     res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-    })
+      firstname: entity.firstname,
+      lastname: entity.lastname,
+      email: entity.email,
+      tabs: entity.tabs,
+      transactions: entity.transactions,
+    });
   } else {
-    res.status(404)
-    throw new Error('Entity not found')
+    res.status(404);
+    throw new Error("Entity not found");
   }
-})
+});
 
-// @desc    Update user profile
-// @route   PUT /api/users/profile
-// @access  Private
-const updateUserProfile = asyncHandler(async (req, res) => {
-  const user = await Entity.findById(req.user._id)
+/**
+ * @DESC    Update user profile
+ * @ROUTE   PUT /api/entity/figure
+ * @ACCESS  Private
+ */
+const updateFigure = asyncHandler(async (req, res) => {
+  const entity = await Entity.findById(req.entity._id);
 
-  if (user) {
-    user.name = req.body.name || user.name
-    user.email = req.body.email || user.email
+  if (entity) {
+    entity.firstname = req.body.firstname || entity.firstname;
+    entity.lastname = req.body.lastname || entity.lastname;
+    entity.email = req.body.email || entity.email;
     if (req.body.password) {
-      user.password = req.body.password
+      entity.password = req.body.password;
     }
 
-    const updatedUser = await user.save()
+    const updatedEntity = await entity.save();
 
     res.json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
-      token: generateToken(updatedUser._id),
-    })
+      _id: updatedEntity._id,
+      firstname: updatedEntity.firstname,
+      lastname: updatedEntity.lastname,
+      email: updatedEntity.email,
+      tabs: entity.tabs,
+      token: generateToken(updatedEntity._id),
+    });
   } else {
-    res.status(404)
-    throw new Error('Entity not found')
+    res.status(404);
+    throw new Error("Entity not found");
   }
-})
+});
 
-// @desc    Get all users
-// @route   GET /api/users
-// @access  Private/Admin
-const getUsers = asyncHandler(async (req, res) => {
-  const users = await Entity.find({})
-  res.json(users)
-})
-
-// @desc    Delete user
-// @route   DELETE /api/users/:id
-// @access  Private/Admin
-const deleteUser = asyncHandler(async (req, res) => {
-  const user = await Entity.findById(req.params.id)
-
-  if (user) {
-    await user.remove()
-    res.json({ message: 'Entity removed' })
-  } else {
-    res.status(404)
-    throw new Error('Entity not found')
-  }
-})
-
-// @desc    Get user by ID
-// @route   GET /api/users/:id
-// @access  Private/Admin
-const getUserById = asyncHandler(async (req, res) => {
-  const user = await Entity.findById(req.params.id).select('-password')
-
-  if (user) {
-    res.json(user)
-  } else {
-    res.status(404)
-    throw new Error('Entity not found')
-  }
-})
-
-// @desc    Update user
-// @route   PUT /api/users/:id
-// @access  Private/Admin
-const updateUser = asyncHandler(async (req, res) => {
-  const user = await Entity.findById(req.params.id)
-
-  if (user) {
-    user.name = req.body.name || user.name
-    user.email = req.body.email || user.email
-    user.isAdmin = req.body.isAdmin
-
-    const updatedUser = await user.save()
-
-    res.json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
-    })
-  } else {
-    res.status(404)
-    throw new Error('Entity not found')
-  }
-})
-
-export {
-    authUser,
-    registerUser,
-    getFigure,
-    updateUserProfile,
-    getUsers,
-    deleteUser,
-    getUserById,
-    updateUser,
-}
+export { authenticateEntity, registerEntity, getFigure, updateFigure };

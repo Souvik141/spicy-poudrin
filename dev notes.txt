@@ -1,0 +1,4 @@
+BUGS:
+1.  Description: Click logo as an Unofficial entity
+    Expected: Should land on the Default page
+    Actual: Landing on the Cover page

@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("../stocks/bg.png");
+  background-size: cover;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -13,8 +15,21 @@ code {
 input[type='button'], input[type='submit'] {
   cursor: pointer;
 }
+ul, li, p {
+  margin: 0;
+  padding: 0;
+  margin-block: 0;
+  margin-inline: 0;
+  padding-inline: 0;
+}
 .container {
   position: relative;
-  max-width: 1140px;
+  max-width: 1264px;
   width: 100%;
+}
+.hidden {
+  display: none;
+}
+.disable {
+  pointer-events: none;
 }
