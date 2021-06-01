@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
 
+.table-container {
+    overflow-x: auto;
+    height: 50vh;
+}
 table.record-table {
     border-collapse: collapse;
     width: 100%;
-}
-.table-container {
-    overflow-x: auto;
 }
 .record-table th span, .record-table td span {
     display: flex;
@@ -18,21 +19,13 @@ table.record-table {
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 }
-.record-table td .inline-action {
-    width: 12px;
-    padding: 3px 2px 1px 2px;
-    cursor: pointer;
-    border: #51514d 1px solid;
-    border-radius: 5px;
-}
 table.record-table thead th span {
     padding: 5px 0px;
-    font-size: 1.25rem;
+    font-size: 0.875rem;
     font-family: 'Nanum Gothic', sans-serif;
     color: #2e2e2e;
 }
 table.record-table tbody td span {
-    /* padding: 0px 10px; */
     font-size: 0.875rem;
     color: #2e2e2e;
 }
@@ -53,4 +46,7 @@ table.record-table tbody td span {
 }
 .options-case span.option:hover {
     background-color: #bbb;
+}
+table.record-table .css-tlfecz-indicatorContainer {
+    padding: 0px;
 }

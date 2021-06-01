@@ -12,9 +12,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-input[type='button'], input[type='submit'] {
-  cursor: pointer;
-}
 ul, li, p {
   margin: 0;
   padding: 0;

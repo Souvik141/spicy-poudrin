@@ -15,6 +15,7 @@ import "./styles/assets.css";
 import "./styles/savings.css";
 import "./styles/table.css";
 import "./styles/default.css";
+import "./styles/ip-fields.css";
 import App from "./App";
 import store from "./store";
 import reportWebVitals from "./reportWebVitals";

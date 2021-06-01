@@ -1,44 +1,91 @@
 import { useState } from "react";
+import Select from "react-select";
+import { ControlDrawer } from "../elements/ip-fields.js";
 import downArrow from "../stocks/down-arrow.svg";
 
-const DataBlock = ({ data, dataIndex }) => {
+const DataBlock = ({ data, dataIndex, isEditing }) => {
   switch (dataIndex.type) {
     case "date":
       return (
         <td key={dataIndex.key}>
-          <span>{data[dataIndex.key].toString().substr(0, 10)}</span>
+          {isEditing ?
+          (<input type="date" value={data[dataIndex.key].toString().substr(0, 10)} />)
+          : (<span>{data[dataIndex.key].toString().substr(0, 10)}</span>)}
+        </td>
+      );
+    case "number":
+      return (
+        <td key={dataIndex.key}>
+        {isEditing ?
+          (<input type="number" value={data[dataIndex.key]} />)
+          : (<span>{data[dataIndex.key]}</span>)}
+        </td>
+      );
+    case "select":
+      return (
+        <td key={dataIndex.key}>
+        {isEditing ?
+          (<Select
+            className='dropdown-field'
+            searchable={false}
+            value={data[dataIndex.key]}
+            options={dataIndex.set}
+          />)
+          : (<span>{data[dataIndex.key]}</span>)}
+        </td>
+      )
+    case "textarea":
+      return (
+        <td key={dataIndex.key}>
+        {isEditing ?
+          (<textarea rows='3' cols='50' value={data[dataIndex.key]} />)
+          : (<span>{data[dataIndex.key]}</span>)}
         </td>
       );
     default:
       return (
         <td key={dataIndex.key}>
-          <span>{data[dataIndex.key]}</span>
+        {isEditing ?
+          (<input type="text" value={data[dataIndex.key]} />)
+          : (<span>{data[dataIndex.key]}</span>)}
         </td>
       );
   }
 };
 
 const DataRow = ({ row, heads, setRow, setClass }) => {
+  const [isEditing, edit] = useState(false)
   return (
     <tr className="record-data">
       <td></td>
       {heads.map((eachHead) => {
-        return <DataBlock data={row} dataIndex={eachHead} />;
+        return <DataBlock data={row} dataIndex={eachHead} isEditing={isEditing} />;
       })}
       <td>
-        <img
+        {/* <img
           src={downArrow}
           alt="action-arrow"
           className="inline-action"
           onClick={() => {
-            console.log("clicked");
             setRow();
           }}
         />
         <div className={"options-case" + setClass}>
-          <span className="option">Edit</span>
+          <span className="option" onClick={() => edit(true)}>Edit</span>
           <span className="option">Delete</span>
-        </div>
+        </div> */}
+        <ControlDrawer
+          actionSet={[
+            {
+              label: "Edit",
+              action: () => edit(true)
+            },
+            {
+              label: "Delete",
+              action: () => edit(true)
+            }
+          ]}
+        />
       </td>
     </tr>
   );

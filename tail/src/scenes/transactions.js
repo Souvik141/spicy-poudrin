@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFigure } from "../callouts/entityCallouts.js";
-import { TransactionTemplate, DataForm } from "../elements/transaction.js";
+import { TransactionTemplate, AddTranactionButton } from "../elements/transaction.js";
 import { Table } from "../elements/table.js";
+import { Drawer } from "../elements/ip-fields.js";
 
 const Transactions = ({ history }) => {
   console.log("Transactions");
@@ -11,7 +12,6 @@ const Transactions = ({ history }) => {
   const { userInfo } = entityState;
   const entityFigure = useSelector((state) => state.entityFigure);
   const { user } = entityFigure;
-  const [formState, setFormState] = useState(false);
   useEffect(() => {
     if (!userInfo) {
       history.push("/auth/signin");
@@ -23,26 +23,22 @@ const Transactions = ({ history }) => {
     <div className="txns">
       <div className="txn-header">
         <div className="action-case">
-          <input
-            className="add-txn-button"
-            type="button"
-            value="Add"
-            onClick={() => setFormState(true)}
-          />
+          <AddTranactionButton />
           <input
             className="import-txn-button"
             type="button"
             value="Import"
-            onClick={() => setFormState(true)}
           />
         </div>
       </div>
-      {formState && (
-        <div className="add-txn-bg">
-          <DataForm closeForm={() => setFormState(false)} />
-        </div>
-      )}
       <Table heads={TransactionTemplate} data={user ? user.transactions : []} />
+      <Drawer
+        dataSet={[
+          { value: 'debit', label: 'Debit' },
+          { value: 'credit', label: 'Credit' }
+        ]}
+        fieldWidth="100px"
+      />
     </div>
   );
 };

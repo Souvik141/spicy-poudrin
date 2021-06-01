@@ -1,0 +1,82 @@
+/* Drawer
+ * ControlDrawer */
+.drawer-choice {
+    cursor: default;
+}
+.gesture-reference {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+/* Drawer */
+.drawer-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+.drawer-container .drawer-mainframe {
+    position: relative;
+    display: flex;
+    border: hsl(0, 0%, 80%) 1px solid;
+    border-radius: 4px;
+}
+.drawer-container .drawer-mainframe .drawer-value-case {
+    background-color: transparent;
+    border: none;
+    cursor: default;
+}
+.drawer-container img.drawer-control {
+    position: absolute;
+    right: 0px;
+    width: 10px;
+    object-fit: contain;
+    background-color: #fff;
+    padding: 5px;
+}
+.drawer-container .drawer-dataset {
+    position: absolute;
+    top: 28px;
+    background-color: #fff;
+    border: hsl(0, 0%, 80%) 1px solid;
+    border-radius: 4px;
+    z-index: 1;
+    width: inherit;
+}
+
+/* ControlDrawer */
+.inline-action {
+    position: relative;
+}
+.inline-action-ico {
+    width: 12px;
+    padding: 3px 2px 1px 2px;
+    opacity: 0.6;
+    border: hsl(0, 0%, 80%) 1px solid;
+    border-radius: 4px;
+}
+.inline-action-ico:hover {
+    opacity: 1;
+}
+.inline-action .drawer-dataset {
+    position: absolute;
+    top: 5px;
+    right: 42px;
+    padding: 5px 0px;
+    background-color: #fff;
+    border: hsl(0, 0%, 80%) 1px solid;
+    border-radius: 4px;
+    z-index: 1;
+    width: inherit;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%), 0 1px 4px rgb(0 0 0 / 10%);
+}
+.inline-action .drawer-dataset .drawer-choice {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+}
+.inline-action .drawer-dataset .drawer-choice:hover {
+    background-color: #eef5a9;
+}

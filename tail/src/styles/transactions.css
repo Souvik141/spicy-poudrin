@@ -8,6 +8,7 @@
 }
 .txn-header {
     height: 50px;
+    padding: 0px 10px;
     border-radius: 5px 5px 0px 0px;
     background-color: #dee1e6;
     display: flex;
@@ -22,15 +23,17 @@
 .action-case {
     display: flex;
     justify-content: space-evenly;
-    width: 136px;
 }
 .add-txn-button, .import-txn-button {
-    width: 58px;
     height: 36px;
-    border-width: 1px;
+    border: #ccc 1px solid;
     border-radius: 5px;
     background-color: #fff;
     color: #262624;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    padding: 0px 15px;
+    margin-right: 5px;
 }
 .add-txn-bg {
     position: fixed;
@@ -38,19 +41,64 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(255, 255, 255, 0.5);
+    background-color: rgb(255, 255, 255, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .record-data-form {
-    
+    /* position: relative; */
+    max-width: 540px;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 12px 20px;
+    border-radius: 5px;
+    border: #ddd 1px solid;
 }
 .x-button {
+    /* position: absolute; */
     width: 10px;
     height: 10px;
     border-radius: 10px;
-    border-width: 1px;
-    border-color: #262624;
     background-color: red;
+}
+.record-data-form .form-field-case {
+    display: flex;
+    flex-direction: column;
+}
+.record-data-form .form-field-case input[type="text"],
+.record-data-form .form-field-case input[type="date"],
+.record-data-form .form-field-case input[type="number"],
+.record-data-form .form-field-case textarea,
+.record-data-form .form-button-case input[type="button"] {
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 4px;
+    max-width: calc(540px - 40px);
+    background-color: hsl(0, 0%, 100%);
+    color: #262624;
+    padding: 10px;
+    font-size: 0.825rem;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.record-data-form .form-field-case .dropdown-field {
+    font-size: 0.825rem;
+    font-weight: 400;
+    color: #262624;
+}
+.record-data-form .form-field-case textarea {
+    max-height: 200px;
+}
+.record-data-form .form-field-case label {
+    padding: 5px 0px;
+}
+.record-data-form .form-button-case {
+    display: flex;
+    justify-content: flex-end;
+}
+.record-data-form .form-button-case input[type="button"] {
+    margin: 10px 0px 10px 10px;
 }
