@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
 .auth {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 90vh;
 }
 .auth .content {
     height: 500px;
@@ -22,17 +23,19 @@
     width: 240px;
     border-style: none;
     border-radius: 8px;
-    background-color: #fff;
+    color: #ddd;
+    background-color: #262624;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    font-size: 13px;
+    font-size: 12px;
+    font-weight: 600;
     box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%), 0 1px 4px rgb(0 0 0 / 10%);
 }
 .auth button img {
     margin-right: 5px;
 }
 .auth .auth-form-container {
-    background-color: #fff;
+    background-color: #262624;
     border-radius: 8px;
     box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%), 0 1px 4px rgb(0 0 0 / 10%);
 }
@@ -64,17 +67,13 @@
     padding: 0px 10px;
 }
 .auth-form input[type="submit"] {
-    height: 2.2rem;
     width: 100%;
     border-style: none;
-    background-color: #262624;
-    color: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    font-weight: lighter;
-    letter-spacing: 3px;
-    font-size: 1.10rem;
-    font-weight: 400;
+    background-color: #aaa;
+    color: #262624;
+    font-family: 'Odibee Sans', cursive;
+    font-size: 2rem;
+    padding: 7px 0px 5px 0px;
     text-transform: uppercase;
 }
 .auth .auth-form-container .auth-form .auth-item {
@@ -83,7 +82,9 @@
     flex-direction: column;
 }
 .auth-form .auth-item label {
-    font-weight: 600;
+    color: #fff;
+    font-family: 'Odibee Sans', cursive;
+    font-size: 1.3rem;
 }
 .ba-container {
     width: 100%;
@@ -107,7 +108,13 @@
 .auth a {
     text-decoration: none;
     font-size: 0.75rem;
-    color: #262624;
+    color: #e6f34f;
+}
+.auth .auth-xtras a{
+    color: #fffb00;
+}
+.auth .auth-xtras p{
+    font-weight: 600;
 }
 .auth a:hover {
     text-decoration: underline;

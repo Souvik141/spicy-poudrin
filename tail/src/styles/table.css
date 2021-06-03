@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
 .table-container {
     overflow-x: auto;
     height: 50vh;
@@ -20,14 +19,15 @@ table.record-table {
     border-bottom: 1px solid #ccc;
 }
 table.record-table thead th span {
-    padding: 5px 0px;
-    font-size: 0.875rem;
-    font-family: 'Nanum Gothic', sans-serif;
+    padding: 5px 10px;
+    font-size: 1rem;
+    font-family: 'Play', sans-serif;
     color: #2e2e2e;
 }
 table.record-table tbody td span {
     font-size: 0.875rem;
     color: #2e2e2e;
+    padding: 5px 10px;
 }
 .options-case {
     position: fixed;

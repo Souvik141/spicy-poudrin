@@ -1,6 +1,5 @@
 import { useState } from "react"
-import Select from "react-select"
-import { ControlDrawer } from "../elements/ip-fields.js";
+import { Drawer, ControlDrawer, Text, Date, Number, TextArea } from "../elements/ip-fields.js";
 
 const TransactionTemplate = [
   {
@@ -74,33 +73,47 @@ const AddTranactionButton = () => {
             <div className="x-button" onClick={() => setFormState(false)} />
             <form>
               <div className='form-field-case'>
-                <label>Date</label>
-                <input type="date" value={ntxnDate} onChange={(event) => setTxnDate(event.target.value)} />
-              </div>
-              <div className='form-field-case'>
-                <label>Amount</label>
-                <input type="number" value={ntxnAmount} onChange={(event) => setTxnAmount(event.target.value)} />
-              </div>
-              <div className='form-field-case'>
-                <label>Type</label>
-                <Select
-                  className='dropdown-field'
-                  searchable={false}
-                  value={ntxnType}
-                  onChange={(option) => setTxnType(option)}
-                  options={[
-                    { value: 'debit', label: 'Debit' },
-                    { value: 'credit', label: 'Credit' }
-                  ]}
+                <Date
+                  label="Date"
+                  value={ntxnDate}
+                  onChange={(value) => setTxnDate(value)}
                 />
               </div>
               <div className='form-field-case'>
-                <label>Brief</label>
-                <input type="text" value={ntxnBrief} onChange={(event) => setTxnBrief(event.target.value)} />
+                <Number
+                  label="Amount"
+                  value={ntxnAmount}
+                  onChange={(value) => setTxnAmount(value)}
+                  placeholder="XXXX.XX"
+                />
               </div>
               <div className='form-field-case'>
-                <label>Description</label>
-                <textarea rows='3' cols='50' value={ntxnDesc} onChange={(event) => setTxnDesc(event.target.value)} />
+                <Drawer
+                  dataSet={[
+                    { value: 'debit', label: 'Debit' },
+                    { value: 'credit', label: 'Credit' }
+                  ]}
+                  label="Type"
+                  value={ntxnType}
+                  onChange={(value) => setTxnType(value)}
+                  placeholder="choose..."
+                />
+              </div>
+              <div className='form-field-case'>
+                <Text
+                  label="Brief"
+                  value={ntxnBrief}
+                  onChange={(value) => setTxnBrief(value)}
+                  placeholder="short tag"
+                />
+              </div>
+              <div className='form-field-case'>
+                <TextArea
+                  label="Description"
+                  value={ntxnDesc}
+                  onChange={(value) => setTxnDesc(value)}
+                  placeholder="go WILD"
+                />
               </div>
               <div className='form-button-case'>
                 <input type="button" value="Add" />

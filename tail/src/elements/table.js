@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Select from "react-select";
-import { ControlDrawer } from "../elements/ip-fields.js";
+import { Drawer, ControlDrawer } from "../elements/ip-fields.js";
 import downArrow from "../stocks/down-arrow.svg";
 
 const DataBlock = ({ data, dataIndex, isEditing }) => {
@@ -25,11 +25,17 @@ const DataBlock = ({ data, dataIndex, isEditing }) => {
       return (
         <td key={dataIndex.key}>
         {isEditing ?
-          (<Select
-            className='dropdown-field'
-            searchable={false}
-            value={data[dataIndex.key]}
-            options={dataIndex.set}
+          (
+          // <Drawer
+          //   searchable={false}
+          //   value={data[dataIndex.key]}
+          //   options={dataIndex.set}
+          // />
+          <Drawer
+            dataSet={[
+              { value: 'debit', label: 'Debit' },
+              { value: 'credit', label: 'Credit' }
+            ]}
           />)
           : (<span>{data[dataIndex.key]}</span>)}
         </td>
@@ -38,7 +44,7 @@ const DataBlock = ({ data, dataIndex, isEditing }) => {
       return (
         <td key={dataIndex.key}>
         {isEditing ?
-          (<textarea rows='3' cols='50' value={data[dataIndex.key]} />)
+          (<textarea rows='1' cols='50' value={data[dataIndex.key]} />)
           : (<span>{data[dataIndex.key]}</span>)}
         </td>
       );

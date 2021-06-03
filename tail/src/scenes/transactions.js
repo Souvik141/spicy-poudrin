@@ -32,13 +32,6 @@ const Transactions = ({ history }) => {
         </div>
       </div>
       <Table heads={TransactionTemplate} data={user ? user.transactions : []} />
-      <Drawer
-        dataSet={[
-          { value: 'debit', label: 'Debit' },
-          { value: 'credit', label: 'Credit' }
-        ]}
-        fieldWidth="100px"
-      />
     </div>
   );
 };

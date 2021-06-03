@@ -1,4 +1,4 @@
-# spicy-poudrin
+# Spicy-Poudrin
 
 ### Env Variables
 

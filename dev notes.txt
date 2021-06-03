@@ -1,5 +1,7 @@
 OUTSTANDING:
 1.  What: Drawer component same as "Select" from react-select
+    BUG: On clicking upon choice, not getting updated with the selected value
+
 BUGS:
 1.  Description: Click logo as an Unofficial entity
     Expected: Should land on the Default page
