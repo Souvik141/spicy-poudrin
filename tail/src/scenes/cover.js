@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFigure } from "../callouts/entityCallouts.js";
+import { getFigure } from "../callouts/entity-callouts.js";
 
 const Cover = ({ history }) => {
   console.log("Cover");

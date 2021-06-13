@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import entityRoutes from "./routes/entityRoutes.js";
+import routes from "./routes.js";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -25,7 +25,7 @@ mongoose.connection.on("error", (err) => {
   }
 });
 
-app.use("/api/entity", entityRoutes);
+app.use("/api", routes);
 
 app.listen(process.env.SERVER_PORT, () => {
   console.log(

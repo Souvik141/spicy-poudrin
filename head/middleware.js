@@ -9,7 +9,7 @@
  * 1.0  13-05-2021  Sav         with validate middleware for validating authorization token
  */
 import asyncHandler from "express-async-handler";
-import Entity from "./models/entity_m.js";
+import Entity from "./models/entity-model.js";
 import { verifyToken } from "./utils.js";
 
 const validate = asyncHandler(async (req, res, next) => {
@@ -23,7 +23,6 @@ const validate = asyncHandler(async (req, res, next) => {
       req.entity = await Entity.findById(verifyToken(token)).select(
         "-password"
       );
-
       next();
     } catch (error) {
       res.status(401);

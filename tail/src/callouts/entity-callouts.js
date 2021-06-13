@@ -1,13 +1,3 @@
-/**
- * @description     : model action module with user authentication action requests
- * @author          : Sav
- * @group           : model action requests
- * @lastModifiedOn  : 13-05-2021
- * @lastModifiedBy  : Sav
- * @ModificationLog :
- * @Ver @Date       @Author     @Modification
- * 1.0  13-05-2021  Sav         with { login, logout, register, getFigure, updateFigure } requests
- */
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -23,7 +13,8 @@ import {
   UPDATE_FIGURE_REQUEST,
   UPDATE_FIGURE_SUCCESS,
   UPDATE_FIGURE_FAIL,
-} from "../constants/entityConstants";
+} from "../constants";
+import { RESET_DEALS } from "../constants";
 import axios from "axios";
 
 export const login = (email, password) => async (dispatch) => {
@@ -56,6 +47,7 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
   dispatch({ type: LOGOUT });
   dispatch({ type: FIGURE_RESET });
+  dispatch({ type: RESET_DEALS });
   document.location.href = "/login";
 };
 

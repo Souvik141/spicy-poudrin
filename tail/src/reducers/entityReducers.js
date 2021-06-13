@@ -14,7 +14,7 @@ import {
   UPDATE_FIGURE_SUCCESS,
   UPDATE_FIGURE_FAIL,
   UPDATE_FIGURE_RESET,
-} from "../constants/entityConstants";
+} from "../constants";
 
 export const entityReducer = (state = {}, action) => {
   switch (action.type) {

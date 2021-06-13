@@ -22,4 +22,12 @@ const parseSearch = (searchString) => {
   return query;
 };
 
-export { parseSearch };
+const isEmpty = (obj) => {
+  if (obj === undefined) return true;
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) return false;
+  }
+  return true;
+};
+
+export { parseSearch, isEmpty };

@@ -11,9 +11,9 @@ import Footer from "./elements/footer.js";
 // import Obsolete from './scenes/obsolete.js'
 import Default from "./scenes/default.js";
 import Navigation from "./elements/navigation.js";
-import SignIn from "./scenes/signIn.js";
-import SignUp from "./scenes/signUp.js";
-import ResetPassword from "./scenes/resetPassword.js";
+import SignIn from "./scenes/sign-in.js";
+import SignUp from "./scenes/sign-up.js";
+import ResetPassword from "./scenes/reset-password.js";
 import Cover from "./scenes/cover.js";
 import Transactions from "./scenes/transactions.js";
 import Assets from "./scenes/assets.js";

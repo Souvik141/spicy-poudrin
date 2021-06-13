@@ -10,7 +10,7 @@
  */
 import asyncHandler from "express-async-handler";
 import { generateToken, verifyToken } from "../utils.js";
-import Entity from "../models/entity_m.js";
+import Entity from "../models/entity-model.js";
 
 /**
  * @DESC    Authenticate user
@@ -85,8 +85,6 @@ const getFigure = asyncHandler(async (req, res) => {
       firstname: entity.firstname,
       lastname: entity.lastname,
       email: entity.email,
-      tabs: entity.tabs,
-      transactions: entity.transactions,
     });
   } else {
     res.status(404);
@@ -111,13 +109,11 @@ const updateFigure = asyncHandler(async (req, res) => {
     }
 
     const updatedEntity = await entity.save();
-
     res.json({
       _id: updatedEntity._id,
       firstname: updatedEntity.firstname,
       lastname: updatedEntity.lastname,
       email: updatedEntity.email,
-      tabs: entity.tabs,
       token: generateToken(updatedEntity._id),
     });
   } else {

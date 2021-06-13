@@ -10,34 +10,7 @@
  */
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-
-const txnScema = mongoose.Schema(
-  {
-    date: {
-      type: Date,
-      required: true,
-    },
-    amount: {
-      type: Number,
-      required: true,
-    },
-    type: {
-      type: String,
-      required: true,
-    },
-    brief: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      required: false,
-    },
-  },
-  {
-    timestamps: true,
-  }
-);
+import Transaction from "./transaction-model.js";
 
 const entitySchema = mongoose.Schema(
   {
@@ -58,12 +31,6 @@ const entitySchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    tabs: {
-      type: String,
-      required: false,
-      default: "Home,",
-    },
-    transactions: [txnScema],
   },
   {
     timestamps: true,

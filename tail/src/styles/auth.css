@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
 .auth {
     display: flex;
     justify-content: center;
@@ -6,30 +5,24 @@
     min-height: 90vh;
 }
 .auth .content {
-    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     color: #262624;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 .auth button {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 2.4rem;
     width: 240px;
+    height: 2.4rem;
     border-style: none;
     border-radius: 8px;
     color: #ddd;
     background-color: #262624;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    font-size: 12px;
-    font-weight: 600;
     box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%), 0 1px 4px rgb(0 0 0 / 10%);
+    margin-bottom: 6px;
 }
 .auth button img {
     margin-right: 5px;
@@ -40,92 +33,49 @@
     box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%), 0 1px 4px rgb(0 0 0 / 10%);
 }
 .auth .auth-form {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
     padding: 40px 20px;
+    position: relative;
 }
 .auth .auth-form input {
     margin: 6px 0px;
-    display: block;
-    font-size: 0.825rem;
-    font-weight: 400;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    background-color: #f7f7f9;
-    background-clip: padding-box;
-    border: 1px solid #ccc;
 }
-.auth-form input[type="email"],
-.auth-form input[type="password"],
-.auth-form input[type="text"] {
-    height: 2rem;
-    border-radius: 5px;
+.auth .auth-form input.focused {
+    margin: 5px -1px;
+}
+.auth-form input[type=email],
+.auth-form input[type=password],
+.auth-form input[type=text] {
     width: 180px;
-    padding: 0px 10px;
 }
-.auth-form input[type="submit"] {
+.auth-form input[type=submit] {
     width: 100%;
     border-style: none;
     background-color: #aaa;
     color: #262624;
-    font-family: 'Odibee Sans', cursive;
     font-size: 2rem;
     padding: 7px 0px 5px 0px;
     text-transform: uppercase;
 }
 .auth .auth-form-container .auth-form .auth-item {
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
+    margin-bottom: 15px;
 }
 .auth-form .auth-item label {
     color: #fff;
-    font-family: 'Odibee Sans', cursive;
     font-size: 1.3rem;
-}
-.ba-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-.show-pwd {
-    position: relative;
-    right: 5px;
-    bottom: 20px;
-    width: 18px;
-    height: 9px;
-    border-radius: 10px;
-    background-color: #4f4f4f;
-    cursor: pointer;
-}
-.show-pwd-t {
-    opacity: 0.5;
 }
 .auth a {
     text-decoration: none;
-    font-size: 0.75rem;
     color: #e6f34f;
 }
 .auth .auth-xtras a{
     color: #fffb00;
 }
-.auth .auth-xtras p{
-    font-weight: 600;
-}
 .auth a:hover {
     text-decoration: underline;
-}
-.auth a.reset-pwd {
-    align-self: flex-end;
 }
 .auth .auth-xtras {
     margin-top: 15px;
     width: 182px;
-    font-size: 0.80rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

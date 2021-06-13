@@ -1,5 +1,5 @@
 /**
- * @description     : Entity Constants
+ * @description     : Constants
  * @author          : Sav
  * @group           : constants
  * @lastModifiedOn  : 13-05-2021
@@ -26,3 +26,21 @@ export const UPDATE_FIGURE_REQUEST = "UPDATE_FIGURE_REQUEST";
 export const UPDATE_FIGURE_SUCCESS = "UPDATE_FIGURE_SUCCESS";
 export const UPDATE_FIGURE_FAIL = "UPDATE_FIGURE_FAIL";
 export const UPDATE_FIGURE_RESET = "UPDATE_FIGURE_RESET";
+// to add transaction
+export const ADD_DEAL_REQUEST = "ADD_DEAL_REQUEST";
+export const ADD_DEAL_SUCCESS = "ADD_DEAL_SUCCESS";
+export const ADD_DEAL_FAIL = "ADD_DEAL_FAIL";
+//to fetch all transactions
+export const FETCH_DEAL_REQUEST = "FETCH_DEAL_REQUEST";
+export const FETCH_DEAL_SUCCESS = "FETCH_DEAL_SUCCESS";
+export const FETCH_DEAL_FAIL = "FETCH_DEAL_FAIL";
+//to update transaction
+export const UPDATE_DEAL_REQUEST = "UPDATE_DEAL_REQUEST";
+export const UPDATE_DEAL_SUCCESS = "UPDATE_DEAL_SUCCESS";
+export const UPDATE_DEAL_FAIL = "UPDATE_DEAL_FAIL";
+//to delete transaction
+export const DELETE_DEAL_REQUEST = "DELETE_DEAL_REQUEST";
+export const DELETE_DEAL_SUCCESS = "DELETE_DEAL_SUCCESS";
+export const DELETE_DEAL_FAIL = "DELETE_DEAL_FAIL";
+//to update all transactions
+export const RESET_DEALS = "RESET_DEALS";

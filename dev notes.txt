@@ -1,7 +1,8 @@
 OUTSTANDING:
-1.  What: Drawer component same as "Select" from react-select
-    BUG: On clicking upon choice, not getting updated with the selected value
-
+1.  What: Control Drawer dataset offclick not working on other control drawer buttons, also
+dataset i going outside of the table
+2.  Modify Transactions display mobile view, set when width < 620px
+2.  Drawer field input is scrollable
 BUGS:
 1.  Description: Click logo as an Unofficial entity
     Expected: Should land on the Default page

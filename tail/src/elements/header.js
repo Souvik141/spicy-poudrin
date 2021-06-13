@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../callouts/entityCallouts.js";
+import { logout } from "../callouts/entity-callouts.js";
 import logo from "../stocks/spicy-poudrin.svg";
 import reactLogo from "../stocks/react-logo.png";
 
