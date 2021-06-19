@@ -11,12 +11,13 @@
     align-items: center;
     color: #262624;
 }
-.auth button {
+.auth .google-auth,
+.auth .facebook-auth,
+.auth .twitter-auth {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 240px;
-    height: 2.4rem;
+    width: 242px;
     border-style: none;
     border-radius: 8px;
     color: #ddd;
@@ -24,7 +25,8 @@
     box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%), 0 1px 4px rgb(0 0 0 / 10%);
     margin-bottom: 6px;
 }
-.auth button img {
+.auth .auth-xtras img {
+    width: 25px;
     margin-right: 5px;
 }
 .auth .auth-form-container {
@@ -33,8 +35,11 @@
     box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%), 0 1px 4px rgb(0 0 0 / 10%);
 }
 .auth .auth-form {
-    padding: 40px 20px;
+    padding: 40px 10px;
     position: relative;
+}
+.auth .auth-form .auth-form-field-case {
+    display: flex;
 }
 .auth .auth-form input {
     margin: 6px 0px;
@@ -56,9 +61,17 @@
     padding: 7px 0px 5px 0px;
     text-transform: uppercase;
 }
-.auth .auth-form-container .auth-form .auth-item {
+.auth-form .entity-info,
+.auth-form .auth-item,
+.auth-form-container .submit-button-case,
+.auth-form-container .ba-container {
+    padding: 0px 10px;
+}
+.auth .auth-form .entity-info-item,
+.auth .auth-form .auth-item {
     margin-bottom: 15px;
 }
+.auth-form .entity-info label,
 .auth-form .auth-item label {
     color: #fff;
     font-size: 1.3rem;
@@ -67,13 +80,13 @@
     text-decoration: none;
     color: #e6f34f;
 }
-.auth .auth-xtras a{
+.auth .sign-up-link a{
     color: #fffb00;
 }
 .auth a:hover {
     text-decoration: underline;
 }
-.auth .auth-xtras {
+.auth .sign-up-link {
     margin-top: 15px;
     width: 182px;
     display: flex;

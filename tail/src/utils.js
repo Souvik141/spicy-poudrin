@@ -30,4 +30,9 @@ const isEmpty = (obj) => {
   return true;
 };
 
-export { parseSearch, isEmpty };
+const isObject = (variable) => {
+  if (typeof variable === 'object' && variable !== null)  return true;
+  return false;
+};
+
+export { parseSearch, isEmpty, isObject };

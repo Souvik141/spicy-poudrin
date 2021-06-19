@@ -26,21 +26,39 @@ export const UPDATE_FIGURE_REQUEST = "UPDATE_FIGURE_REQUEST";
 export const UPDATE_FIGURE_SUCCESS = "UPDATE_FIGURE_SUCCESS";
 export const UPDATE_FIGURE_FAIL = "UPDATE_FIGURE_FAIL";
 export const UPDATE_FIGURE_RESET = "UPDATE_FIGURE_RESET";
-// to add transaction
+// to add deal
 export const ADD_DEAL_REQUEST = "ADD_DEAL_REQUEST";
 export const ADD_DEAL_SUCCESS = "ADD_DEAL_SUCCESS";
 export const ADD_DEAL_FAIL = "ADD_DEAL_FAIL";
-//to fetch all transactions
+//to fetch all deals
 export const FETCH_DEAL_REQUEST = "FETCH_DEAL_REQUEST";
 export const FETCH_DEAL_SUCCESS = "FETCH_DEAL_SUCCESS";
 export const FETCH_DEAL_FAIL = "FETCH_DEAL_FAIL";
-//to update transaction
+//to update deal
 export const UPDATE_DEAL_REQUEST = "UPDATE_DEAL_REQUEST";
 export const UPDATE_DEAL_SUCCESS = "UPDATE_DEAL_SUCCESS";
 export const UPDATE_DEAL_FAIL = "UPDATE_DEAL_FAIL";
-//to delete transaction
+//to delete deal
 export const DELETE_DEAL_REQUEST = "DELETE_DEAL_REQUEST";
 export const DELETE_DEAL_SUCCESS = "DELETE_DEAL_SUCCESS";
 export const DELETE_DEAL_FAIL = "DELETE_DEAL_FAIL";
-//to update all transactions
+//to reset all deals
 export const RESET_DEALS = "RESET_DEALS";
+// to add reserve
+export const ADD_RESERVE_REQUEST = "ADD_RESERVE_REQUEST";
+export const ADD_RESERVE_SUCCESS = "ADD_RESERVE_SUCCESS";
+export const ADD_RESERVE_FAIL = "ADD_RESERVE_FAIL";
+//to fetch all reserves
+export const FETCH_RESERVE_REQUEST = "FETCH_RESERVE_REQUEST";
+export const FETCH_RESERVE_SUCCESS = "FETCH_RESERVE_SUCCESS";
+export const FETCH_RESERVE_FAIL = "FETCH_RESERVE_FAIL";
+//to update reserve
+export const UPDATE_RESERVE_REQUEST = "UPDATE_RESERVE_REQUEST";
+export const UPDATE_RESERVE_SUCCESS = "UPDATE_RESERVE_SUCCESS";
+export const UPDATE_RESERVE_FAIL = "UPDATE_RESERVE_FAIL";
+//to delete reserve
+export const DELETE_RESERVE_REQUEST = "DELETE_RESERVE_REQUEST";
+export const DELETE_RESERVE_SUCCESS = "DELETE_RESERVE_SUCCESS";
+export const DELETE_RESERVE_FAIL = "DELETE_RESERVE_FAIL";
+//to reset all reserves
+export const RESET_RESERVES = "RESET_RESERVES";

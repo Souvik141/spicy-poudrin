@@ -231,7 +231,7 @@ const Text = ({ label, value, onChange, placeholder }) => {
   const [thisValue, setValue] = useState(value);
   const [highlighted, highlight] = useState(undefined);
   return (
-    <>
+    <div className="ip-text">
       {label !== undefined && <label>{label}</label>}
       <input
         className={highlighted}
@@ -245,7 +245,7 @@ const Text = ({ label, value, onChange, placeholder }) => {
         }}
         placeholder={placeholder}
       />
-    </>
+    </div>
   );
 };
 
@@ -310,23 +310,19 @@ const TextArea = ({ dimens, label, value, onChange, placeholder }) => {
           onChange(event.target.value);
         }}
         placeholder={placeholder}
+        style={{ lineHeight: "1.3" }}
       />
     </>
   );
 };
 
-const TextAreaView = ({ value }) => {
+const View = ({ value }) => {
   if (!value) return <p></p>;
-  const lineList = value.split("\n");
+  const lineList = value.toString().split("\n");
   return (
-    <p>
+    <p style={{ lineHeight: "1.3" }}>
       {lineList.map((each) => {
-        return (
-          <>
-            {each}
-            <br />
-          </>
-        );
+        return <>{each}<br /></>
       })}
     </p>
   );
@@ -389,7 +385,7 @@ export {
   Date,
   Number,
   TextArea,
-  TextAreaView,
+  View,
   Email,
   Password,
 };

@@ -3,12 +3,14 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { entityReducer, entityFigureReducer } from "./reducers/entityReducers";
 import { dealReducer } from "./reducers/dealReducers";
+import { reserveReducer } from "./reducers/reserveReducers";
 import { configReducer } from "./reducers/configReducer";
 
 const reducer = combineReducers({
   entityState: entityReducer,
   entityFigure: entityFigureReducer,
   dealState: dealReducer,
+  reserveState: reserveReducer,
   config: configReducer,
 });
 

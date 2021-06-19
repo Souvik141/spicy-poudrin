@@ -10,45 +10,76 @@ const SignIn = ({ location, history }) => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
+  const [validationErrorMessage, setValidationErrorMessage] = useState(undefined);
   const entityState = useSelector((state) => state.entityState);
-  const { userInfo } = entityState;
+  const { userInfo, error } = entityState;
   const redirect = location.search ? location.search.split("=")[1] : "/";
   useEffect(() => {
     if (userInfo) {
       history.push(redirect);
     }
-  }, [history, userInfo, redirect]);
-
+    if(error) {
+      setValidationErrorMessage(error);
+    }
+  }, [history, userInfo, redirect, error]);
+  const validate = () => {
+    if(!email) {
+      setValidationErrorMessage("Email is required")
+      return false
+    }
+    if(!email.match(
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    )) {
+      setValidationErrorMessage("Please provide a valid email address")
+      return false
+    }
+    if(!password) {
+      setValidationErrorMessage("Password is required")
+      return false
+    }
+    return true
+  }
   const submitSignIn = () => {
-    // if (validate()) {
-    dispatch(login(email, password));
-    // }
-  };
+    if (validate()) {
+      dispatch(login(email, password));
+    }
+  }
   return (
-    <div className="auth">
-      <div className="content sign-in">
-        <button>
-          <img src={googleLogo} alt="ggl" />
-          <span>Log in with Google</span>
-        </button>
-        <button>
-          <img src={facebookLogo} alt="fb" />
-          <span>Log in with Facebook</span>
-        </button>
-        <button>
-          <img src={twitterLogo} alt="twt" />
-          <span>Log in with Twitter</span>
-        </button>
-        <div className="auth-form-container">
-          <form className="auth-form" autoComplete="on">
-            <div className="auth-item">
+    <div class="auth">
+      <div class="content sign-in">
+        <div class="auth-xtras">
+          <div class="google-auth">
+            <img src={googleLogo} alt="ggl" />
+            <span>Sign in with Google</span>
+          </div>
+          <div class="facebook-auth">
+            <img src={facebookLogo} alt="fb" />
+            <span>Sign in with Facebook</span>
+          </div>
+          <div class="twitter-auth">
+            <img src={twitterLogo} alt="twt" />
+            <span>Sign in with Twitter</span>
+          </div>
+        </div>
+        <div class="auth-form-container">
+          <form class="auth-form" autoComplete="on">
+            <div style={{
+                padding: "0px 10px",
+                lineHeight: "1.3",
+                marginBottom: "7px"
+              }}>
+              <span style={{color: "red"}}>
+                {validationErrorMessage}
+              </span>
+            </div>
+            <div class="auth-item">
               <Email
                 label="Email"
                 placeholder="enter your email address"
                 onChange={(value) => setEmail(value)}
               />
             </div>
-            <div className="auth-item">
+            <div class="auth-item">
               <Password
                 label="Password"
                 placeholder="enter your password"
@@ -56,25 +87,27 @@ const SignIn = ({ location, history }) => {
                 enableView={true}
               />
             </div>
-            <input
-              className="form-submit"
-              onClick={(e) => {
-                e.preventDefault();
-                submitSignIn();
-              }}
-              type="submit"
-              value="Sign in"
-            />
-            <div className="ba-container">
-              <a className="reset-pwd" href="/auth/reset+password">
+            <div class="submit-button-case">
+              <input
+                class="form-submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  submitSignIn();
+                }}
+                type="submit"
+                value="Sign in"
+              />
+            </div>
+            <div class="ba-container">
+              <a class="reset-pwd" href="/auth/reset+password">
                 Forgot password?
               </a>
             </div>
           </form>
         </div>
-        <div className="auth-xtras">
+        <div class="sign-up-link">
           <p>Don’t have an account?</p>
-          <a key="left-link" href="/auth/signup">
+          <a key="sign-up-link" href="/auth/signup">
             Sign up
           </a>
         </div>

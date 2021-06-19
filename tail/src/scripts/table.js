@@ -1,5 +1,5 @@
-const table = document.getElementsByClassName("txn-table");
-table.offsetHeight = 50;
+const bucket = document.getElementsByClassName("txn-bucket");
+bucket.offsetHeight = 50;
 console.log("called");
 const createResizableColumn = function (col, resizer) {
   // Track the current position of mouse
@@ -37,7 +37,7 @@ const createResizableColumn = function (col, resizer) {
 };
 
 // Query all headers
-const cols = table.querySelectorAll("th");
+const cols = bucket.querySelectorAll("th");
 
 // Loop over them
 [].forEach.call(cols, function (col) {
@@ -46,7 +46,7 @@ const cols = table.querySelectorAll("th");
   resizer.classList.add("resizer");
 
   // Set the height
-  resizer.style.height = `${table.offsetHeight}px`;
+  resizer.style.height = `${bucket.offsetHeight}px`;
 
   // Add a resizer element to the column
   col.appendChild(resizer);

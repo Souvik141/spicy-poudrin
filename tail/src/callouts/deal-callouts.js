@@ -26,20 +26,19 @@ export const addDeal = (value) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    console.log(value);
     const { data } = await axios.post("/api/deals/add", value, config);
     dispatch({
       type: ADD_DEAL_SUCCESS,
-      deals: data.transactions,
-      totalDeal: data.totalTransactionAmount,
+      deals: data.deals,
+      totalDeal: data.totalDealAmount,
     });
   } catch (error) {
+    console.log(error);
+    console.log(error.response);
+    console.log(error.response.data);
     dispatch({
       type: ADD_DEAL_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: error.response.data.message
     });
   }
 };
@@ -61,8 +60,8 @@ export const getDeals = (key) => async (dispatch, getState) => {
     const { data } = await axios.get(encodeURI(endpointUrl), config);
     dispatch({
       type: FETCH_DEAL_SUCCESS,
-      deals: data.transactions,
-      totalDeal: data.totalTransactionAmount,
+      deals: data.deals,
+      totalDeal: data.totalDealAmount,
     });
   } catch (error) {
     dispatch({
@@ -90,8 +89,8 @@ export const updateDeal = (deal) => async (dispatch, getState) => {
     const { data } = await axios.post("/api/deals/", deal, config);
     dispatch({
       type: UPDATE_DEAL_SUCCESS,
-      deals: data.transactions,
-      totalDeal: data.totalTransactionAmount,
+      deals: data.deals,
+      totalDeal: data.totalDealAmount,
     });
   } catch (error) {
     dispatch({
@@ -121,8 +120,8 @@ export const deleteDeal = (deal) => async (dispatch, getState) => {
     const { data } = await axios.delete("/api/deals/", config);
     dispatch({
       type: DELETE_DEAL_SUCCESS,
-      deals: data.transactions,
-      totalDeal: data.totalTransactionAmount,
+      deals: data.deals,
+      totalDeal: data.totalDealAmount,
     });
   } catch (error) {
     dispatch({

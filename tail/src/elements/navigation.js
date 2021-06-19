@@ -1,5 +1,25 @@
 const Navigation = ({ history, match }) => {
-  const tabs = ["cover", "transaction", "asset", "liability", "savings"];
+  const tabs = [{
+    label: "cover",
+    value: "cover",
+    ref: "/nav/cover"
+  }, {
+    label: "deals",
+    value: "deal",
+    ref: "/nav/deal"
+  }, {
+    label: "assets",
+    value: "asset",
+    ref: "/nav/asset"
+  }, {
+    label: "liabilities",
+    value: "liability",
+    ref: "/nav/liability"
+  }, {
+    label: "reserves",
+    value: "reserve",
+    ref: "/nav/reserve"
+  }];
   return (
     <div className="navigation">
       <ul>
@@ -7,10 +27,10 @@ const Navigation = ({ history, match }) => {
           return (
             <li key={each}>
               <input
-                className={match.params.scene === each ? "active" : "inactive"}
+                className={match.params.scene === each.value ? "active" : "inactive"}
                 type="button"
-                value={each}
-                onClick={() => history.push(`/nav/${each}`)}
+                value={each.label}
+                onClick={() => history.push(each.ref)}
               />
             </li>
           );

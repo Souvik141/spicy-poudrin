@@ -4,15 +4,16 @@ import {
   Date,
   Number,
   TextArea,
-} from "../elements/input-fields.js";
+} from "./input-fields.js";
 
-const TransactionForm = ({
+const DealForm = ({
   deal,
   briefSet,
   setFormState,
   setInstance,
-  addTransaction,
-  updateTransaction,
+  addDeal,
+  updateDeal,
+  errorMessage
 }) => {
   const setDeal = (key, value) => {
     const interim = deal;
@@ -27,7 +28,7 @@ const TransactionForm = ({
   const dealDesc = deal ? deal.description : undefined;
   return (
     <div className="add-txn-bg">
-      <div className="record-data-form">
+      <div className="slab-data-form">
         <div
           className="x-button"
           onClick={() => {
@@ -36,6 +37,12 @@ const TransactionForm = ({
           }}
         />
         <form>
+          {errorMessage &&
+          (<div style={{ lineHeight: "1.3" }}>
+            <span style={{color: "red"}}>
+              {errorMessage}
+            </span>
+          </div>)}
           <div className="form-field-case">
             <Date
               label="Date"
@@ -86,13 +93,13 @@ const TransactionForm = ({
               <input
                 type="button"
                 value="Add"
-                onClick={() => addTransaction(deal)}
+                onClick={() => addDeal(deal)}
               />
             ) : (
               <input
                 type="button"
                 value="Update"
-                onClick={() => updateTransaction(deal)}
+                onClick={() => updateDeal(deal)}
               />
             )}
           </div>
@@ -102,4 +109,4 @@ const TransactionForm = ({
   );
 };
 
-export { TransactionForm };
+export { DealForm };

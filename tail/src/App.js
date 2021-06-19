@@ -15,10 +15,10 @@ import SignIn from "./scenes/sign-in.js";
 import SignUp from "./scenes/sign-up.js";
 import ResetPassword from "./scenes/reset-password.js";
 import Cover from "./scenes/cover.js";
-import Transactions from "./scenes/transactions.js";
+import Deals from "./scenes/deals.js";
 import Assets from "./scenes/assets.js";
 import Liabilities from "./scenes/liabilities.js";
-import Savings from "./scenes/savings.js";
+import Reserves from "./scenes/reserves";
 
 const App = ({ history }) => {
   console.log("App");
@@ -55,10 +55,10 @@ const App = ({ history }) => {
             </>
           )}
           <Route path="/nav/cover" component={Cover} />
-          <Route path="/nav/transaction" component={Transactions} />
+          <Route path="/nav/deal" component={Deals} />
           <Route path="/nav/asset" component={Assets} />
           <Route path="/nav/liability" component={Liabilities} />
-          <Route path="/nav/savings" component={Savings} />
+          <Route path="/nav/reserve" component={Reserves} />
         </div>
       </main>
       <Footer />

@@ -2,3 +2,19 @@
   display: flex;
   justify-content: center;
 }
+.scene-case {
+  position: relative;
+  height: 80vh;
+  margin: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.bucket-container.grid {
+  display: block;
+}
+.bucket-container.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

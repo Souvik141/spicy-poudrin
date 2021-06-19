@@ -6,19 +6,20 @@ import {
   addDeal,
   updateDeal,
   deleteDeal,
-} from "../callouts/transaction-callouts.js";
-import { TransactionForm } from "../elements/transaction.js";
+} from "../callouts/deal-callouts.js";
+import { DealForm } from "../elements/deal.js";
+import Slab from "../elements/slab.js";
 import { isEmpty } from "../utils";
-import { ControlDrawer, TextAreaView } from "../elements/input-fields.js";
+import { ControlDrawer } from "../elements/input-fields.js";
 
-const Transactions = ({ history }) => {
+const Deals = ({ history }) => {
   const dispatch = useDispatch();
   const entityState = useSelector((state) => state.entityState);
   const { userInfo } = entityState;
   const entityFigure = useSelector((state) => state.entityFigure);
   const { user } = entityFigure;
   const dealState = useSelector((state) => state.dealState);
-  const { deals, totalDeal } = dealState;
+  const { deals, totalDeal, error } = dealState;
 
   const [formState, setFormState] = useState(false);
   const [dealInstance, setDealInstance] = useState({});
@@ -26,6 +27,7 @@ const Transactions = ({ history }) => {
   const [briefActionSet, setBriefActionSet] = useState([]);
   const [dealView, setDealView] = useState(deals);
   const [view, setView] = useState(undefined);
+  const [errorMessage, setErrorMessage] = useState(undefined);
 
   useEffect(() => {
     if (!userInfo) {
@@ -64,23 +66,31 @@ const Transactions = ({ history }) => {
     } else {
       setDealView(deals);
     }
-  }, [dispatch, history, user, userInfo, deals, view]);
+    console.log(error);
+    if(error) {
+      setErrorMessage(error)
+    }
+    else {
+      setErrorMessage(undefined)
+      setFormState(false)
+    }
+  }, [dispatch, history, user, userInfo, deals, view, error]);
 
-  const addTransaction = (deal) => {
+  const addDealCallout = (deal) => {
     dispatch(addDeal(deal));
   };
-  const updateTransaction = (deal) => {
+  const updateDealCallout = (deal) => {
     dispatch(updateDeal(deal));
   };
-  const deleteTransaction = (deal) => {
+  const deleteDealCallout = (deal) => {
     dispatch(deleteDeal(deal));
   };
 
   return (
-    <div className="txns">
+    <div className="txns scene-case">
       <div className="txn-header">
         <div className="txn-text-case">
-          <h3>{view ? view : "All"} Transactions</h3>
+          <h3>{view ? view : "All"} Deals</h3>
           <h5>
             Count: {!dealView ? 0 : dealView.length} Balance: {totalDeal}
           </h5>
@@ -95,28 +105,32 @@ const Transactions = ({ history }) => {
           <input className="import-txn-button" type="button" value="Import" />
         </div>
       </div>
-      <TransactionTable
+      <DealBucket
         data={dealView}
         briefActionSet={briefActionSet}
         setFormState={(value) => setFormState(value)}
         setInstance={(value) => setDealInstance(value)}
-        deleteInstance={(value) => deleteTransaction(value)}
+        deleteInstance={(value) => {
+          if(window.confirm("Do you really want to delete this deal?"))
+            deleteDealCallout(value)
+        }}
       />
       {formState && (
-        <TransactionForm
+        <DealForm
           deal={dealInstance}
           briefSet={briefSet}
           setFormState={(value) => setFormState(value)}
           setInstance={(value) => setDealInstance(value)}
-          addTransaction={(value) => addTransaction(value)}
-          updateTransaction={(value) => updateTransaction(value)}
+          addDeal={(value) => addDealCallout(value)}
+          updateDeal={(value) => updateDealCallout(value)}
+          errorMessage={errorMessage}
         />
       )}
     </div>
   );
 };
 
-const TransactionTable = ({
+const DealBucket = ({
   data,
   briefActionSet,
   setFormState,
@@ -130,9 +144,9 @@ const TransactionTable = ({
     }
   }, [data, thisData]);
   return (
-    <div className="table-container">
-      <div className="record-table">
-        <div className="record-table-head">
+    <div class="bucket-container grid">
+      <div class="slab-bucket">
+        <div class="slab-bucket-head">
           <div />
           <div class="date-div content">
             <h5>Date</h5>
@@ -153,61 +167,46 @@ const TransactionTable = ({
           <div class="control-drawer-div content"></div>
           <div class="negative-space" />
         </div>
-        <div className="record-table-body">
-          {!isEmpty(data) &&
-            data.map((each, index) => {
+        <div class="slab-bucket-body">
+          {isEmpty(data) ?
+            (<div class="no-deals-div">
+              <span>Nothing to see here</span>
+            </div>)
+            : data.map((each, index) => {
+              var values = []
+              values.push({class: "", value: ""})
+              values.push({
+                class: "date-div",
+                value: each["date"].toString().substr(8, 2)
+                + "-" + each["date"].toString().substr(5, 2)
+                + "-" + each["date"].toString().substr(0, 4)
+              })
+              values.push({class: "amount-div", value: each["amount"]})
+              values.push({class: "type-div", value: each["type"].label})
+              values.push({class: "brief-div", value: each["brief"]})
+              values.push({class: "description-div", value: each["description"]})
+              values.push({class: "control-drawer-div", value: [
+                {
+                  label: "Edit",
+                  action: () => {
+                    setFormState(true);
+                    setInstance(each);
+                  },
+                },
+                {
+                  label: "Delete",
+                  action: () => deleteInstance(each),
+                },
+              ]})
+              values.push({class: "", value: ""})
               return (
-                <>
-                  <div class="content" />
-                  <div class="date-div content">
-                    <span>
-                      {each["date"].toString().substr(8, 2) +
-                        "-" +
-                        each["date"].toString().substr(5, 2) +
-                        "-" +
-                        each["date"].toString().substr(0, 4)}
-                    </span>
-                  </div>
-                  <div class="amount-div content">
-                    <span>{each["amount"]}</span>
-                  </div>
-                  <div class="type-div content">
-                    <span>{each["type"].label}</span>
-                  </div>
-                  <div class="brief-div content">
-                    <span>{each["brief"]}</span>
-                  </div>
-                  <div class="description-div content">
-                    <TextAreaView value={each["description"]} />
-                  </div>
-                  <div class="control-drawer-div content">
-                    <ControlDrawer
-                      actionSet={[
-                        {
-                          label: "Edit",
-                          action: () => {
-                            setFormState(true);
-                            setInstance(each);
-                          },
-                        },
-                        {
-                          label: "Delete",
-                          action: () => deleteInstance(each),
-                        },
-                      ]}
-                    />
-                  </div>
-                  <div class="negative-space" />
-                </>
+                <Slab values={values} />
               );
             })}
-          <div class="record-table-body-scroll">
-            <div class="bar" />
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Transactions;
+export default Deals;

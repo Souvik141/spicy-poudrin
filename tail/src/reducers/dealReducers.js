@@ -25,6 +25,7 @@ export const dealReducer = (state = {}, action) => {
     case ADD_DEAL_SUCCESS:
     case UPDATE_DEAL_SUCCESS:
     case DELETE_DEAL_SUCCESS:
+      console.log(action)
       return {
         loading: false,
         deals: action.deals,
@@ -36,12 +37,16 @@ export const dealReducer = (state = {}, action) => {
     case DELETE_DEAL_FAIL:
       return {
         loading: false,
-        error: action.deals,
-        totalDeal: action.totalDeal,
+        deals: [],
+        totalDeal: undefined,
+        error: action.payload
       };
 
     case RESET_DEALS:
-      return { deals: undefined };
+      return {
+        deals: [],
+        totalDeal: undefined
+      };
 
     default:
       return state;

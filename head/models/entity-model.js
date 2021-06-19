@@ -6,11 +6,10 @@
  * @lastModifiedBy  : Sav
  * @ModificationLog :
  * @Ver @Date       @Author     @Modification
- * 1.0  13-05-2021  Sav         Entity model with { *firstname, *lastname, *email, *password, tabs, timestamps } attributes & with matchPassword method
+ * 1.0  13-05-2021  Sav         Entity model with { *firstname, *lastname, *email, *password,
+ * timestamps } attributes & with matchPassword method
  */
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
-import Transaction from "./transaction-model.js";
 
 const entitySchema = mongoose.Schema(
   {

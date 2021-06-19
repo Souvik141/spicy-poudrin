@@ -1,5 +1,5 @@
 /**
- * @description     : transaction model action module with user authentication actions
+ * @description     : deal model action module with user authentication actions
  * @author          : Sav
  * @group           : model actions
  * @lastModifiedOn  : 05-06-2021
@@ -11,35 +11,41 @@
 import asyncHandler from "express-async-handler";
 import { verifyToken } from "../utils.js";
 import Entity from "../models/entity-model.js";
-import Transaction from "../models/transaction-model.js";
-import mongoose from "mongoose";
+import Deal from "../models/deal-model.js";
 
 /**
- * @DESC    Add transaction
+ * @DESC    Add deal
  * @ROUTE   POST /api/deals/add
  * @ACCESS  Private
  */
-const addTransaction = asyncHandler(async (req, res) => {
+const addDeal = asyncHandler(async (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   const entity = await Entity.findById(verifyToken(token));
   if (!entity) {
     res.status(404);
-    throw new Error("Entity not found");
+    res.json({ message: "Entity not found" });
   }
   var data = req.body;
   data.entity = verifyToken(token);
-  const newTransaction = await Transaction.create(data);
-  if (!newTransaction) {
-    res.status(400);
-    throw new Error("Invalid entity data");
+  var newDeal;
+  try {
+    newDeal = await Deal.create(data);
   }
-  const transactions = await Transaction.find(
+  catch (error) {
+    res.status(401);
+    res.json({ message: "Invalid, or missing entered data" });
+  }
+  if (!newDeal) {
+    res.status(401);
+    res.json({ message: "Invalid, or missing entered data" });
+  }
+  const deals = await Deal.find(
     {
       entity: entity._id,
     },
     "date amount type brief description"
   ).sort([["date", -1]]);
-  const aggregateResult = await Transaction.aggregate([
+  const aggregateResult = await Deal.aggregate([
     { $match: { entity: entity._id } },
     {
       $group: {
@@ -49,33 +55,33 @@ const addTransaction = asyncHandler(async (req, res) => {
     },
   ]);
   res.json({
-    transactions: transactions,
-    totalTransactionAmount: aggregateResult[0].totalAmount.toFixed(2),
+    deals: deals,
+    totalDealAmount: aggregateResult[0].totalAmount.toFixed(2),
   });
 });
 
 /**
- * @DESC    Fetch transaction
+ * @DESC    Fetch deal
  * @ROUTE   GET /api/deals/:view
  * @ACCESS  Private
  */
-const fetchTransactions = asyncHandler(async (req, res) => {
+const fetchDeals = asyncHandler(async (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   const entity = await Entity.findById(verifyToken(token));
   if (!entity) {
     res.status(404);
-    throw new Error("Entity not found");
+    res.json({ message: "Entity not found" });
   }
   var key = req.params.brief;
   var filter = {
     entity: entity._id,
   };
   if (key) filter["brief"] = decodeURI(key);
-  const transactions = await Transaction.find(
+  const deals = await Deal.find(
     filter,
     "date amount type brief description"
   ).sort([["date", -1]]);
-  const aggregateResult = await Transaction.aggregate([
+  const aggregateResult = await Deal.aggregate([
     { $match: { entity: entity._id } },
     {
       $group: {
@@ -85,25 +91,25 @@ const fetchTransactions = asyncHandler(async (req, res) => {
     },
   ]);
   res.json({
-    transactions: transactions,
-    totalTransactionAmount: aggregateResult[0].totalAmount.toFixed(2),
+    deals: deals,
+    totalDealAmount: aggregateResult[0].totalAmount.toFixed(2),
   });
 });
 
 /**
- * @DESC    Update transaction
+ * @DESC    Update deal
  * @ROUTE   POST /api/deals/
  * @ACCESS  Private
  */
-const updateTransaction = asyncHandler(async (req, res) => {
+const updateDeal = asyncHandler(async (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   const entity = await Entity.findById(verifyToken(token));
   if (!entity) {
     res.status(404);
-    throw new Error("Entity not found");
+    res.json({ message: "Entity not found" });
   }
   var deal = req.body;
-  await Transaction.updateOne(
+  await Deal.updateOne(
     {
       _id: deal._id,
       entity: entity._id,
@@ -116,13 +122,13 @@ const updateTransaction = asyncHandler(async (req, res) => {
       description: deal.description,
     }
   );
-  const transactions = await Transaction.find(
+  const deals = await Deal.find(
     {
       entity: entity._id,
     },
     "date amount type brief description"
   ).sort([["date", -1]]);
-  const aggregateResult = await Transaction.aggregate([
+  const aggregateResult = await Deal.aggregate([
     { $match: { entity: entity._id } },
     {
       $group: {
@@ -132,35 +138,35 @@ const updateTransaction = asyncHandler(async (req, res) => {
     },
   ]);
   res.json({
-    transactions: transactions,
-    totalTransactionAmount: aggregateResult[0].totalAmount.toFixed(2),
+    deals: deals,
+    totalDealAmount: aggregateResult[0].totalAmount.toFixed(2),
   });
 });
 
 /**
- * @DESC    Delete transaction
+ * @DESC    Delete deal
  * @ROUTE   DELETE /api/deals/
  * @ACCESS  Private
  */
-const deleteTransaction = asyncHandler(async (req, res) => {
+const deleteDeal = asyncHandler(async (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   const entity = await Entity.findById(verifyToken(token));
   if (!entity) {
     res.status(404);
-    throw new Error("Entity not found");
+    res.json({ message: "Entity not found" });
   }
   var deal = req.body;
-  await Transaction.deleteOne({
+  await Deal.deleteOne({
     _id: deal._id,
     entity: entity._id,
   });
-  const transactions = await Transaction.find(
+  const deals = await Deal.find(
     {
       entity: entity._id,
     },
     "date amount type brief description"
   ).sort([["date", -1]]);
-  const aggregateResult = await Transaction.aggregate([
+  const aggregateResult = await Deal.aggregate([
     { $match: { entity: entity._id } },
     {
       $group: {
@@ -170,14 +176,14 @@ const deleteTransaction = asyncHandler(async (req, res) => {
     },
   ]);
   res.json({
-    transactions: transactions,
-    totalTransactionAmount: aggregateResult[0].totalAmount.toFixed(2),
+    deals: deals,
+    totalDealAmount: aggregateResult[0].totalAmount.toFixed(2),
   });
 });
 
 export {
-  addTransaction,
-  fetchTransactions,
-  updateTransaction,
-  deleteTransaction,
+  addDeal,
+  fetchDeals,
+  updateDeal,
+  deleteDeal,
 };

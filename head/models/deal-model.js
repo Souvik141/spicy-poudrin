@@ -1,16 +1,17 @@
 /**
- * @description     : Transaction model
+ * @description     : Deal model
  * @author          : Sav
  * @group           : model
  * @lastModifiedOn  : 05-06-2021
  * @lastModifiedBy  : Sav
  * @ModificationLog :
  * @Ver @Date       @Author     @Modification
- * 1.0  13-05-2021  Sav         Entity model with { *firstname, *lastname, *email, *password, tabs, timestamps } attributes & with matchPassword method
+ * 1.0  13-05-2021  Sav         Deal model with { *date, *amount, *actualAmount, *type,
+ * *brief, description, *entity } attributes
  */
 import mongoose from "mongoose";
 
-const txnScema = mongoose.Schema(
+const dealScema = mongoose.Schema(
   {
     date: {
       type: Date,
@@ -45,4 +46,4 @@ const txnScema = mongoose.Schema(
   }
 );
 
-export default mongoose.model("transactions", txnScema);
+export default mongoose.model("deals", dealScema);
