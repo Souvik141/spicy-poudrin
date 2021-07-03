@@ -29,6 +29,7 @@ h1, h2, h3, h4, h5, h6 {
 a, span, p, input, button, textarea {
   font-family: 'Baloo Tammudu 2', cursive;
   font-size: 0.825rem;
+  text-decoration: none;
 }
 a, span, p, input {
   padding-top: 7px;

@@ -9,7 +9,8 @@
     "head": "nodemon head/head.js",
     "tail": "npm start --prefix tail",
     "dev": "concurrently \"npm run head\" \"npm run tail\"",
-    "pretty": "prettier --write \"./**/*.{js,jsx,json}\""
+    "pretty": "prettier --write \"./**/*.{js,jsx,json}\"",
+    "build":  "react-scripts build"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,8 @@
   },
   "homepage": "https://github.com/Souvik141/spicy-poudrin#readme",
   "dependencies": {
+    "@salesforce-ux/design-system": "^2.15.8",
+    "@salesforce/design-system-react": "^0.10.35",
     "bcryptjs": "^2.4.3",
     "concurrently": "^6.1.0",
     "dotenv": "^9.0.2",

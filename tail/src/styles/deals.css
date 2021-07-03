@@ -60,14 +60,17 @@
     display: flex;
     justify-content: space-evenly;
 }
-.add-txn-button, .import-txn-button {
-    height: 36px;
+.add-txn-button,
+.import-txn-button,
+.export-txn-button {
     border: #ccc 1px solid;
     border-radius: 5px;
     background-color: #fff;
     color: #262624;
-    padding: 0px 15px;
     margin-right: 5px;
+}
+.export-txn-button {
+    padding: 6px 10px;
 }
 .add-txn-bg {
     position: fixed;
@@ -77,11 +80,14 @@
     height: 100%;
     background-color: rgb(255, 255, 255, 0.7);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    z-index: 1;
 }
 .slab-data-form {
+    position: relative;
+    top: 50%;
+    left: 50%;
     max-width: 540px;
+    height: fit-content;
     background-color: #262624;
     display: flex;
     flex-direction: column;
@@ -95,6 +101,7 @@
     height: 10px;
     border-radius: 10px;
     background-color: red;
+    z-index: 1;
 }
 .slab-data-form .form-field-case {
     display: flex;

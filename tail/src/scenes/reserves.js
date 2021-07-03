@@ -8,10 +8,9 @@ import {
   deleteReserve,
 } from "../callouts/reserve-callouts.js";
 import { ReserveForm } from "../elements/reserve.js";
-import Nugget from "../elements/nugget.js";
+import { Nugget } from "../utils";
 
 const Reserves = ({ history }) => {
-  console.log("Reserves");
   const dispatch = useDispatch();
   const entityState = useSelector((state) => state.entityState);
   const { userInfo } = entityState;
@@ -19,13 +18,11 @@ const Reserves = ({ history }) => {
   const { user } = entityFigure;
   const reserveState = useSelector((state) => state.reserveState);
   const { reserves, error } = reserveState;
-  console.log(reserves);
 
   const [formState, setFormState] = useState(false);
   const [reserveInstance, setReserveInstance] = useState({});
   const [briefSet, setBriefSet] = useState([]);
   const [briefActionSet, setBriefActionSet] = useState([]);
-  // const [reserveSet, setReserves] = useState(reserves);
   const [view, setView] = useState(undefined);
   const [errorMessage, setErrorMessage] = useState(undefined);
   
@@ -89,13 +86,10 @@ const Reserves = ({ history }) => {
 };
 
 const ReservesBucket = ({ data }) => {
-  console.log(data);
   return (
     <div class="bucket-container flex">
       {data && data.map(each => {
-          return (<Nugget
-            nugget={each}
-          />)
+          return (<Nugget nugget={each} />)
       })}
     </div>
   );

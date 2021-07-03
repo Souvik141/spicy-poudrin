@@ -8,8 +8,7 @@ import {
   deleteDeal,
 } from "../callouts/deal-callouts.js";
 import { DealForm } from "../elements/deal.js";
-import Slab from "../elements/slab.js";
-import { isEmpty } from "../utils";
+import { isEmpty, Slab } from "../utils";
 import { ControlDrawer } from "../elements/input-fields.js";
 
 const Deals = ({ history }) => {
@@ -85,7 +84,6 @@ const Deals = ({ history }) => {
   const deleteDealCallout = (deal) => {
     dispatch(deleteDeal(deal));
   };
-
   return (
     <div className="txns scene-case">
       <div className="txn-header">
@@ -102,7 +100,17 @@ const Deals = ({ history }) => {
             value="Add"
             onClick={() => setFormState(true)}
           />
-          <input className="import-txn-button" type="button" value="Import" />
+          <input
+            className="import-txn-button"
+            type="button"
+            value="Import"
+            onClick={() => console.log(JSON.stringify(deals))}
+          />
+          {dealView && <a
+            className="export-txn-button"
+            href = {window.URL.createObjectURL(new Blob([JSON.stringify(deals)]))}
+            download = 'deals.json'
+          >Export</a>}
         </div>
       </div>
       <DealBucket
@@ -199,9 +207,7 @@ const DealBucket = ({
                 },
               ]})
               values.push({class: "", value: ""})
-              return (
-                <Slab values={values} />
-              );
+              return (<Slab values={values} />);
             })}
         </div>
       </div>

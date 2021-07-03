@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 // Stylesheets
 import "./styles/App.css";
 import "./styles/index.css";
+import "./styles/utils.css";
 import "./styles/header.css";
 import "./styles/footer.css";
 import "./styles/navigation.css";

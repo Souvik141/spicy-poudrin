@@ -1,3 +1,5 @@
+import { set } from "mongoose";
+import { useState } from "react";
 import {
   Drawer,
   CustomDrawer,
@@ -5,6 +7,7 @@ import {
   Number,
   TextArea,
 } from "./input-fields.js";
+import { Dragger } from "../utils.js";
 
 const DealForm = ({
   deal,
@@ -26,9 +29,18 @@ const DealForm = ({
   const dealType = deal ? deal.type : undefined;
   const dealBrief = deal ? deal.brief : undefined;
   const dealDesc = deal ? deal.description : undefined;
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
   return (
     <div className="add-txn-bg">
-      <div className="slab-data-form">
+      <div className="slab-data-form"
+        style={{ transform: `translate(calc(-50% + ${coords.x}px), calc(-50% + ${coords.y}px))` }}
+      >
+        <Dragger
+          coords={coords}
+          setCoords={(data) => {
+            setCoords(data)
+          }}
+        />
         <div
           className="x-button"
           onClick={() => {

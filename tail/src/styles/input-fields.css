@@ -2,6 +2,8 @@
  * ControlDrawer */
 .drawer-dataset {
     padding: 5px 0px;
+    max-height: 250px;
+    overflow-y: auto;
 }
 .drawer-choice {
     cursor: default;
