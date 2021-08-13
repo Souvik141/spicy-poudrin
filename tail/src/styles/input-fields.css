@@ -116,13 +116,6 @@
 }
 
 /* Email, Password, Text */
-.ip-email,
-.ip-password,
-.ip-text {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
 .show-pwd {
     position: absolute;
     right: 5px;
@@ -164,4 +157,12 @@ textarea {
 }
 input:focus, textarea:focus {
   outline: 0 !important;
+}
+
+/* VirginSpanker */
+.standard-button-bg {
+    padding: 12px;
+    font-weight: 400;
+    border-radius: 4px;
+    cursor: default;
 }

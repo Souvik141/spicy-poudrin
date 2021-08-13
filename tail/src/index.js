@@ -15,7 +15,6 @@ import "./styles/deals.css";
 import "./styles/assets.css";
 import "./styles/savings.css";
 import "./styles/default.css";
-import "./styles/nugget.css";
 import "./styles/input-fields.css";
 import App from "./App";
 import store from "./store";

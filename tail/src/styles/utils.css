@@ -1,3 +1,4 @@
+/* @Deprecated */
 .dragger {
   position: absolute;
   left: 0px;
@@ -11,3 +12,62 @@
 .dragger.grabbing {
   cursor: grabbing;
 }
+
+/* All */
+/* blank row space */
+.blank-row-space-small {height: 10px}
+.blank-row-space-small-medium {height: 20px}
+.blank-row-space-medium {height: 30px}
+.blank-row-space-medium-large {height: 40px}
+.blank-row-space-large {height: 50px}
+/* input field */
+.ip-field-container {position: relative;display: flex;flex-direction: column;}
+/* text color */
+.variant-i-text-color {color: #262624;} /* deep */
+.variant-l-text-color {color: #e6f34f;} /* shallow */
+.variant-e-text-color {color: #f0f0f0;} /* shallow */
+/* background color */
+.variant-i-bg-color {background-color: #262624;} /* deep */
+.variant-l-bg-color {background-color: #e6f34f;} /* shallow */
+.variant-e-bg-color {background-color: #f0f0f0;} /* shallow */
+/* border color */
+.variant-i-border-color {border-color: #58584d;} /* shallow */
+.variant-l-border-color {border-color: #cacaa5;} /* shallow */
+.variant-e-border-color {border-color: #b6b6b6;} /* shallow */
+/* centre items */
+.make-items-centered {display: flex;justify-content: center;align-items: center;}
+/* tight wrapping font */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&family=Play:wght@400;700&family=Odibee+Sans&display=swap');
+.baloo-text-wrap-tight {font-family: 'Baloo Tammudu 2', cursive;line-height: 0;padding-top: 8px;}
+.baloo-text-wrap-one {font-family: 'Baloo Tammudu 2', cursive;line-height: 1;padding-top: 8px;}
+.baloo-text-wrap-two {font-family: 'Baloo Tammudu 2', cursive;line-height: 2;padding-top: 8px;}
+.baloo-text-wrap-three {font-family: 'Baloo Tammudu 2', cursive;line-height: 3;padding-top: 8px;}
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+.play-text-wrap-tight {font-family: 'Play', sans-serif;line-height:0}
+.play-text-wrap-one {font-family: 'Play', sans-serif;line-height:1.6}
+.play-text-wrap-two {font-family: 'Play', sans-serif;line-height:2.6}
+.play-text-wrap-three {font-family: 'Play', sans-serif;line-height:3.6}
+/* border */
+.simple-border {border-width: 1px;border-style: solid;}
+/* nugget */
+.nugget {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 10px;
+  padding: 10px 20px;
+}
+.nugget-grid {display: grid;grid-template-columns: 1fr 1fr}
+.nugget-grid-elem {display: flex;align-items: center}
+.nugget-action-case {display: flex;justify-content: space-evenly}
+/* slab */
+.slab-bucket-head,
+.slab-bucket-body {
+  display: grid;
+  grid-template-columns: 20px 100px 80px 60px 120px auto 16px 20px;
+  padding: 3px 0px;
+}
+/* .slab-bucket-body {
+  position: relative;
+  height: calc(80vh - 87px);
+  overflow-y: scroll;
+} */

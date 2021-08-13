@@ -9,7 +9,7 @@
  * 1.0  13-05-2021  Sav         with { generate token, verify token }
  */
 import { useState } from "react";
-import { View, ControlDrawer } from "./elements/input-fields.js";
+import { View, ControlDrawer, VirginSpanker } from "./elements/input-fields.js";
 
 const parseSearch = (searchString) => {
   if (searchString.charAt(0) !== "?") return {};
@@ -37,34 +37,97 @@ const isObject = (variable) => {
   return false;
 };
 
-const Nugget = ({ nugget }) => {
+const Nugget = ({ nugget, editAction }) => {
   const values = []
   for(var key in nugget) {
     values.push({ label: key, value: nugget[key]})
   }
   return (
     <div class="nugget">
-      {values.map((each) => {
-        return (
-          <>
-            <div>
-              <h5>{each.label}: </h5>
+      <div class="nugget-grid">
+        {values.map((each) => {
+          return (
+            <>
+              <div class="nugget-grid-elem">
+                <h5 class="play-text-wrap-one">{each.label}: </h5>
+              </div>
+              <div class="nugget-grid-elem">
+                {isObject(each.value)
+                ? (<span class="baloo-text-wrap-one">{each.value.label}</span>)
+                : (<span class="baloo-text-wrap-one">{each.value}</span>)}
+              </div>
+            </>
+          )
+        })}
+      </div>
+      <div class="blank-row-space-small-medium" />
+      <div class="nugget-action-case">
+        <VirginSpanker
+          label="Edit"
+          onClickAction={() => editAction()}
+        />
+        <VirginSpanker
+          label="Delete"
+          onClickAction={() => editAction()}
+        />
+      </div>
+    </div>
+  );
+}
+
+const SlabHead = ({ template, briefActionSet }) => {
+  return (
+    <div class="slab-bucket-head">
+      {/* {values.map((each) => {
+        if(each.class === "control-drawer-div")
+          return (
+            <div class={each.class + " content"}
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center"
+              }}>
+              <ControlDrawer actionSet={each.value} />
             </div>
-            <div>
-              {isObject(each.value)
-              ? (<span>{each.value.label}</span>)
-              : (<span>{each.value}</span>)}
+          )
+        else
+          return (
+            <div class={each.class + " content"}
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center"
+              }}>
+              <View value={each.value} />
             </div>
-          </>
-        )
-      })}
+          )
+      })} */}
+      <div />
+      <div class="date-div content">
+        <h5>Date</h5>
+      </div>
+      <div class="amount-div content">
+        <h5>Amount</h5>
+      </div>
+      <div class="type-div content">
+        <h5>Type</h5>
+      </div>
+      <div class="brief-div content">
+        <h5>Brief</h5>
+        <ControlDrawer actionSet={briefActionSet} />
+      </div>
+      <div class="description-div content">
+        <h5>Description</h5>
+      </div>
+      <div class="control-drawer-div content"></div>
+      <div class="negative-space" />
     </div>
   );
 }
 
 const Slab = ({ values }) => {
   return (
-    <div class="slab">
+    <>
       {values.map((each) => {
         if(each.class === "control-drawer-div")
           return (
@@ -89,10 +152,11 @@ const Slab = ({ values }) => {
             </div>
           )
       })}
-    </div>
+    </>
   );
 }
 
+// @Deprecated
 const Dragger = ({coords, setCoords}) => {
   const [coordLead, setCoordLead] = useState({ x: 0, y: 0 });
   const [tracking, setTracking] = useState(false);
@@ -135,4 +199,4 @@ const Dragger = ({coords, setCoords}) => {
   />)
 }
 
-export { parseSearch, isEmpty, isObject, Nugget, Slab, Dragger };
+export { parseSearch, isEmpty, isObject, Nugget, SlabHead, Slab, Dragger };

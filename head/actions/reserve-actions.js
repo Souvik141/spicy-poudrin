@@ -36,10 +36,6 @@ const addReserve = asyncHandler(async (req, res) => {
     res.status(401);
     res.json({ message: "Invalid, or missing entered data" });
   }
-  // if (!newReserve) {
-  //   res.status(401);
-  //   res.json({ message: "Invalid, or missing entered data" });
-  // }
   const reserves = await Reserve.find(
     {
       entity: entity._id,
@@ -69,8 +65,20 @@ const fetchReserves = asyncHandler(async (req, res) => {
   const reserves = await Reserve.find(
     filter
   ).sort([["date", -1]]);
+  var reserveList = []
+  reserves.forEach(each => {
+    reserveList.push({
+      "Deposit": each["Deposit"],
+      "Term type": each["Term type"],
+      "Interest /cent": each["Interest /cent"],
+      "Created Date": each["Created Date"],
+      "Amount": each["Amount"],
+      "Aiming for": each["Aiming for"],
+      "Amount if achieved": each["Amount if achieved"]
+    })
+  })
   res.json({
-    reserves: reserves
+    reserves: reserveList
   });
 });
 

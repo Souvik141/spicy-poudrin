@@ -8,8 +8,8 @@ import {
   deleteDeal,
 } from "../callouts/deal-callouts.js";
 import { DealForm } from "../elements/deal.js";
-import { isEmpty, Slab } from "../utils";
-import { ControlDrawer } from "../elements/input-fields.js";
+import { isEmpty, SlabHead, Slab } from "../utils";
+import { ControlDrawer, VirginSpanker } from "../elements/input-fields.js";
 
 const Deals = ({ history }) => {
   const dispatch = useDispatch();
@@ -94,17 +94,13 @@ const Deals = ({ history }) => {
           </h5>
         </div>
         <div className="action-case">
-          <input
-            className="add-txn-button"
-            type="button"
-            value="Add"
-            onClick={() => setFormState(true)}
+          <VirginSpanker
+            label="Add"
+            onClickAction={() => setFormState(true)}
           />
-          <input
-            className="import-txn-button"
-            type="button"
-            value="Import"
-            onClick={() => console.log(JSON.stringify(deals))}
+          <VirginSpanker
+            label="Import"
+            onClickAction={() => console.log}
           />
           {dealView && <a
             className="export-txn-button"
@@ -113,7 +109,7 @@ const Deals = ({ history }) => {
           >Export</a>}
         </div>
       </div>
-      <DealBucket
+      {/* <DealBucket
         data={dealView}
         briefActionSet={briefActionSet}
         setFormState={(value) => setFormState(value)}
@@ -122,7 +118,46 @@ const Deals = ({ history }) => {
           if(window.confirm("Do you really want to delete this deal?"))
             deleteDealCallout(value)
         }}
-      />
+      /> */}
+      <SlabHead briefActionSet={briefActionSet} />
+      <div class="slab-bucket-body">
+        {isEmpty(dealView) ?
+          (<div class="no-deals-div">
+            <span>Nothing to see here</span>
+          </div>)
+          : dealView.map((each, index) => {
+            var values = []
+            values.push({class: "", value: ""})
+            values.push({
+              class: "date-div",
+              value: each["date"].toString().substr(8, 2)
+              + "-" + each["date"].toString().substr(5, 2)
+              + "-" + each["date"].toString().substr(0, 4)
+            })
+            values.push({class: "amount-div", value: each["amount"]})
+            values.push({class: "type-div", value: each["type"].label})
+            values.push({class: "brief-div", value: each["brief"]})
+            values.push({class: "description-div", value: each["description"]})
+            values.push({class: "control-drawer-div", value: [
+              {
+                label: "Edit",
+                action: () => {
+                  setFormState(true);
+                  setDealInstance(each);
+                },
+              },
+              {
+                label: "Delete",
+                action: () => {
+                  if(window.confirm("Do you really want to delete this deal?"))
+                    deleteDealCallout(each)
+                },
+              },
+            ]})
+            values.push({class: "", value: ""})
+            return (<Slab values={values} />);
+          })}
+      </div>
       {formState && (
         <DealForm
           deal={dealInstance}

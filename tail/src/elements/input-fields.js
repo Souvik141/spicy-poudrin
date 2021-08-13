@@ -231,7 +231,7 @@ const Text = ({ label, value, onChange, placeholder }) => {
   const [thisValue, setValue] = useState(value);
   const [highlighted, highlight] = useState(undefined);
   return (
-    <div className="ip-text">
+    <div className="ip-field-container">
       {label !== undefined && <label>{label}</label>}
       <input
         className={highlighted}
@@ -332,7 +332,7 @@ const Email = ({ label, value, onChange, placeholder }) => {
   const [thisValue, setValue] = useState(value);
   const [highlighted, highlight] = useState(undefined);
   return (
-    <div className="ip-email">
+    <div className="ip-field-container">
       {label !== undefined && <label>{label}</label>}
       <input
         className={highlighted}
@@ -355,7 +355,7 @@ const Password = ({ label, value, onChange, placeholder, enableView }) => {
   const [thisValue, setValue] = useState(value);
   const [highlighted, highlight] = useState(undefined);
   return (
-    <div className="ip-password">
+    <div className="ip-field-container">
       {label !== undefined && <label>{label}</label>}
       <input
         className={highlighted}
@@ -377,6 +377,16 @@ const Password = ({ label, value, onChange, placeholder, enableView }) => {
   );
 };
 
+const VirginSpanker = ({ componentClass, label, onClickAction }) => {
+  return(<div
+    class={"standard-button-bg make-items-centered simple-border "
+    + (componentClass || "variant-e-bg-color variant-i-text-color variant-e-border-color")}
+    onClick={() => onClickAction()}
+  >
+    <span class="baloo-text-wrap-tight">{label}</span>
+  </div>)
+}
+
 export {
   Drawer,
   CustomDrawer,
@@ -388,4 +398,6 @@ export {
   View,
   Email,
   Password,
+
+  VirginSpanker
 };

@@ -9,6 +9,7 @@ import {
 } from "../callouts/reserve-callouts.js";
 import { ReserveForm } from "../elements/reserve.js";
 import { Nugget } from "../utils";
+import { VirginSpanker } from "../elements/input-fields.js";
 
 const Reserves = ({ history }) => {
   const dispatch = useDispatch();
@@ -58,18 +59,28 @@ const Reserves = ({ history }) => {
           <h3>Reserves</h3>
         </div>
         <div className="action-case">
-          <input
-            className="add-txn-button"
-            type="button"
-            value="Add"
-            onClick={() => setFormState(true)}
+          <VirginSpanker
+            label="Add"
+            onClickAction={() => setFormState(true)}
           />
-          <input className="import-txn-button" type="button" value="Import" />
+          <VirginSpanker
+            label="Import"
+            onClickAction={() => console.log}
+          />
         </div>
       </div>
-      {reserves && (<ReservesBucket
-        data={reserves}
-      />)}
+      {reserves && (
+      <div class="bucket-container flex">
+        {reserves && reserves.map(each => {
+          return (<Nugget
+            nugget={each}
+            editAction={() => {
+              setFormState(true)
+              setReserveInstance(each)
+            }}
+          />)
+        })}
+      </div>)}
       {formState && (
         <ReserveForm
           reserve={reserveInstance}
@@ -81,16 +92,6 @@ const Reserves = ({ history }) => {
           errorMessage={errorMessage}
         />
       )}
-    </div>
-  );
-};
-
-const ReservesBucket = ({ data }) => {
-  return (
-    <div class="bucket-container flex">
-      {data && data.map(each => {
-          return (<Nugget nugget={each} />)
-      })}
     </div>
   );
 };

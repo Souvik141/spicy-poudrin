@@ -12,12 +12,7 @@
     flex-direction: column;
     justify-content: center;
 }
-.txns .slab-bucket .slab-bucket-head,
-.txns .slab-bucket .slab-bucket-body .slab {
-    display: grid;
-    grid-template-columns: 20px 100px 80px 60px 120px auto 16px 20px;
-    padding: 3px 0px;
-}
+
 .txns .slab-bucket .slab-bucket-body {
     grid-auto-rows: 25px;
 }
@@ -26,11 +21,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.txns .slab-bucket .slab-bucket-body {
-    position: relative;
-    height: calc(80vh - 87px);
-    overflow-y: scroll;
 }
 .txns .slab-bucket .slab-bucket-head div.content{
     display: flex;
@@ -80,12 +70,11 @@
     height: 100%;
     background-color: rgb(255, 255, 255, 0.7);
     display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 1;
 }
 .slab-data-form {
-    position: relative;
-    top: 50%;
-    left: 50%;
     max-width: 540px;
     height: fit-content;
     background-color: #262624;

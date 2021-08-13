@@ -11,6 +11,8 @@
 import asyncHandler from "express-async-handler";
 import { generateToken, verifyToken } from "../utils.js";
 import Entity from "../models/entity-model.js";
+import Deal from "../models/deal-model.js";
+import Reserve from "../models/reserve-model.js";
 
 /**
  * @DESC    Authenticate user
@@ -80,11 +82,31 @@ const registerEntity = asyncHandler(async (req, res) => {
 const getFigure = asyncHandler(async (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   const entity = await Entity.findById(verifyToken(token));
+  const dealAggregateResult = await Deal.aggregate([
+    { $match: { entity: entity._id } },
+    {
+      $group: {
+        _id: null,
+        totalAmount: { $sum: { $multiply: ["$type.value", "$amount"] } },
+      },
+    },
+  ]);
+  const reserveAggregateResult = await Reserve.aggregate([
+    { $match: { entity: entity._id } },
+    {
+      $group: {
+        _id: null,
+        totalAmount: { $sum: "$Amount" },
+      },
+    },
+  ]);
   if (entity) {
     res.json({
       firstname: entity.firstname,
       lastname: entity.lastname,
       email: entity.email,
+      amountInHand: dealAggregateResult[0].totalAmount.toFixed(2)
+      - reserveAggregateResult[0].totalAmount.toFixed(2)
     });
   } else {
     res.status(404);

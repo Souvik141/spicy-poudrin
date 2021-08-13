@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../callouts/entity-callouts.js";
 import logo from "../stocks/spicy-poudrin.svg";
 import reactLogo from "../stocks/react-logo.png";
+import { VirginSpanker } from "./input-fields.js";
 
 export default function Header() {
   console.log("Header");
@@ -27,25 +28,20 @@ export default function Header() {
         <div className="unique">
           {!userInfo ? (
             <>
-              <input
-                className="sign-in"
-                type="button"
-                value="Sign In"
-                onClick={() => (window.location = "/auth/signin")}
+              <VirginSpanker
+                label="Sign In"
+                onClickAction={() => (window.location = "/auth/signin")}
               />
-              <input
-                className="sign-up"
-                type="button"
-                value="Sign Up"
-                onClick={() => (window.location = "/auth/signup")}
+              <VirginSpanker
+                componentClass="variant-i-bg-color variant-l-text-color variant-l-border-color"
+                label="Sign Up"
+                onClickAction={() => (window.location = "/auth/signup")}
               />
             </>
           ) : (
-            <input
-              className="sign-out"
-              type="button"
-              value="Sign Out"
-              onClick={() => dispatch(logout())}
+            <VirginSpanker
+              label="Sign Out"
+              onClickAction={() => dispatch(logout())}
             />
           )}
         </div>

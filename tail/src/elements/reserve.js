@@ -6,7 +6,6 @@ import {
   Number,
   TextArea,
 } from "./input-fields.js";
-import { Dragger } from "../utils.js";
 
 const ReserveForm = ({
   reserve,
@@ -31,19 +30,9 @@ const ReserveForm = ({
   const reserveAimingDate =
     reserve && reserve["Aiming for"] ? reserve["Aiming for"].toString().substr(0, 10) : undefined;
   const reserveAmountIfAchieved = reserve ? reserve["Amount if achieved"] : undefined;
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
   return (
     <div className="add-txn-bg">
-      <div className="slab-data-form"
-        style={{ transform: `translate(calc(-50% + ${coords.x}px), calc(-50% + ${coords.y}px))` }}
-      >
-        <Dragger
-          coords={coords}
-          setCoords={(data) => {
-            console.log(data);
-            setCoords(data)
-          }}
-        />
+      <div className="slab-data-form">
         <div
           className="x-button"
           onClick={() => {
